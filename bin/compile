@@ -40,6 +40,12 @@ mkdir -p $build_dir/.profile.d
 # $HOME is set here https://github.com/cloudfoundry/dea_ng/blob/c2217e5fbcb866c9f4b6fd248b39138a83cbb479/lib/dea/starting/env.rb#L15
 echo "export PATH=\"\$HOME/vendor/jre/bin:\$HOME/bin:\$PATH\";" > $build_dir/.profile.d/jre.sh
 
-status "### JAVA VERSION: `java -version`"
+status "### JAVA VERSION: `$JRE_DIR/bin/java -version`"
 status "### cwd:  `pwd`"
 status "### ls:   `ls`"
+status "### BP_DIR:   $bp_dir"
+status "### LS BP_DIR:   `ls $bp_dir`"
+status "### BUILD_DIR:   $build_dir"
+status "### LS BUILD_DIR:   `ls $build_dir`"
+status "### VENDOR_DIR:   $vendor_dir"
+status "### LS VENDOR_DIR:   `ls $vendor_dir`"
