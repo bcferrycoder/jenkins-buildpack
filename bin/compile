@@ -28,9 +28,9 @@ JRE_DIR=$vendor_dir/jre1.7.0_80
 status "JRE_DIR=$JRE_DIR"
 mv $JRE_DIR jre
 
-#status "Repack jenkins.war"
-#cd $build_dir
-#zip -q -r jenkins.war * -x "vendor/*"
+status "Repack jenkins.war"
+cd $build_dir
+zip -q -r jenkins.war * -x "vendor/*"
 
 # Update the PATH
 status "Building runtime environment"
