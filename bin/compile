@@ -8,8 +8,7 @@ build_dir=$1
 cache_dir=$2
 bp_dir=$(cd $(dirname $0); cd ..; pwd)
 vendor_dir=$build_dir/vendor
-JRE_ARHIVE=jre-1.6.38-linux-amd64.bin
-JRE_ARHIVE_FILE=$bp_dir/files/jre-1.6.38-linux-amd64.bin
+JRE_ARCHIVE_FILE=$bp_dir/files/jre-7u80-linux-x64.gz
 
 # CF Common
 BUILDPACK_PATH=$bp_dir
@@ -21,17 +20,17 @@ source $bp_dir/bin/common.sh
 mkdir -p $vendor_dir
 
 status "Installing java."
-cp $JRE_ARHIVE_FILE $vendor_dir
+cp $JRE_ARCHIVE_FILE $vendor_dir
 cd $vendor_dir
-./$JRE_ARHIVE
-rm $JRE_ARHIVE
-JRE_DIR=$vendor_dir/$(ls -l | tr " " "\n" | grep jre)
+tar xzf $JRE_ARCHIVE_FILE
+rm $JRE_ARCHIVE_FILE
+JRE_DIR=$vendor_dir/jre1.7.0_80
 status "JRE_DIR=$JRE_DIR"
 mv $JRE_DIR jre
 
-status "Repack jenkins.war"
-cd $build_dir
-zip -q -r jenkins.war * -x "vendor/*"
+#status "Repack jenkins.war"
+#cd $build_dir
+#zip -q -r jenkins.war * -x "vendor/*"
 
 # Update the PATH
 status "Building runtime environment"
